@@ -1,0 +1,115 @@
+
+#include <iostream>
+#include <stack>
+#include <cctype>
+#include <string>
+using namespace std;
+
+int priority(char op) {
+    if (op == '+' || op == '-')
+        return 1;
+    if (op == '*' || op == '/')
+        return 2;
+    return 0;
+}
+
+string infixToPostfix(string exp) {
+    stack<char> s;
+    string post = "";
+
+    for (char ch : exp) {
+        if (isalnum(ch))
+            post += ch;
+        else {
+            while (!s.empty() &&
+                   priority(s.top()) >= priority(ch)) {
+                post += s.top();
+                s.pop();
+            }
+            s.push(ch);
+        }
+    }
+
+    while (!s.empty()) {
+        post += s.top();
+        s.pop();
+    }
+
+    return post;
+}
+
+int evaluate(string post) {
+    stack<int> s;
+
+    for (char ch : post) {
+        if (isdigit(ch))
+            s.push(ch - '0');
+
+        else if (isalpha(ch)) {
+            cout << "\nCannot evaluate alphabetic expression without values.\n";
+            return 0;
+        }
+
+        else {
+            if (s.size() < 2) {
+                cout << "\nInvalid expression for evaluation.\n";
+                return 0;
+            }
+
+            int b = s.top();
+            s.pop();
+
+            int a = s.top();
+            s.pop();
+
+            if (ch == '+')
+                s.push(a + b);
+            else if (ch == '-')
+                s.push(a - b);
+            else if (ch == '*')
+                s.push(a * b);
+            else if (ch == '/') {
+                if (b == 0) {
+                    cout << "\nDivision by zero is not allowed.\n";
+                    return 0;
+                }
+                s.push(a / b);
+            }
+        }
+    }
+
+    if (s.size() != 1) {
+        cout << "\nCannot evaluate this expression.\n";
+        return 0;
+    }
+
+    return s.top();
+}
+
+int main() {
+    string infix, postfix;
+
+    cout << "====================================\n";
+    cout << " INFIX TO POSTFIX CONVERSION\n";
+    cout << "====================================\n";
+
+    cout << "Enter infix expression: ";
+    cin >> infix;
+
+    postfix = infixToPostfix(infix);
+
+    cout << "Postfix expression: " << postfix << endl;
+
+    bool numeric = true;
+
+    for (char ch : infix)
+        if (isalpha(ch))
+            numeric = false;
+
+    if (numeric)
+        cout << "Result: " << evaluate(postfix) << endl;
+    else
+        cout << "Result: Cannot evaluate without variable values.\n";
+
+    return 0;
+}
