@@ -1,0 +1,124 @@
+
+#include <iostream>
+using namespace std;
+
+struct Student {
+    int rollNo;
+    int date;
+    int month;
+};
+
+void sortStudents(Student arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j].month > arr[j + 1].month ||
+                (arr[j].month == arr[j + 1].month &&
+                 arr[j].date > arr[j + 1].date)) {
+
+                Student temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void mergeArrays(Student A[], int n,
+                 Student B[], int m,
+                 Student C[]) {
+    int i = 0, j = 0, k = 0;
+
+    while (i < n && j < m) {
+        if (A[i].month < B[j].month ||
+            (A[i].month == B[j].month &&
+             A[i].date <= B[j].date)) {
+            C[k] = A[i];
+            i++;
+        }
+        else {
+            C[k] = B[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n) {
+        C[k] = A[i];
+        i++;
+        k++;
+    }
+
+    while (j < m) {
+        C[k] = B[j];
+        j++;
+        k++;
+    }
+}
+
+void display(Student arr[], int n) {
+    cout << "\nRoll No\tDate\tMonth\n";
+    cout << "--------------------------\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << arr[i].rollNo << "\t"
+             << arr[i].date << "\t"
+             << arr[i].month << endl;
+    }
+}
+
+int main() {
+    int n, m;
+
+    cout << "Enter number of students in Division A: ";
+    cin >> n;
+
+    Student A[n];
+
+    cout << "\nEnter details of Division A:\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nStudent " << i + 1 << endl;
+        cout << "Enter Roll No: ";
+        cin >> A[i].rollNo;
+        cout << "Enter Birth Date: ";
+        cin >> A[i].date;
+        cout << "Enter Birth Month: ";
+        cin >> A[i].month;
+    }
+
+    sortStudents(A, n);
+
+    cout << "\nEnter number of students in Division B: ";
+    cin >> m;
+
+    Student B[m];
+
+    cout << "\nEnter details of Division B:\n";
+
+    for (int i = 0; i < m; i++) {
+        cout << "\nStudent " << i + 1 << endl;
+        cout << "Enter Roll No: ";
+        cin >> B[i].rollNo;
+        cout << "Enter Birth Date: ";
+        cin >> B[i].date;
+        cout << "Enter Birth Month: ";
+        cin >> B[i].month;
+    }
+
+    sortStudents(B, m);
+
+    Student SE_AIML_DOB[n + m];
+
+    mergeArrays(A, n, B, m, SE_AIML_DOB);
+
+    cout << "\n===== DIVISION A (SORTED) =====";
+    display(A, n);
+
+    cout << "\n===== DIVISION B (SORTED) =====";
+    display(B, m);
+
+    cout << "\n===== SE AIML DOB (MERGED & SORTED) =====";
+    display(SE_AIML_DOB, n + m);
+
+    return 0;
+}
