@@ -1,0 +1,101 @@
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int roll;
+    Node *next;
+};
+
+void insert(Node *&head, int roll) {
+    Node *n = new Node{roll, NULL};
+
+    if (head == NULL)
+        head = n;
+    else {
+        Node *t = head;
+        while (t->next)
+            t = t->next;
+        t->next = n;
+    }
+}
+
+bool find(Node *head, int roll) {
+    while (head) {
+        if (head->roll == roll)
+            return true;
+        head = head->next;
+    }
+    return false;
+}
+
+void display(Node *head) {
+    while (head) {
+        cout << head->roll << " ";
+        head = head->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    Node *A = NULL, *B = NULL;
+    int n, m, x;
+
+    cout << "Enter students who like Vanilla: ";
+    cin >> n;
+
+    cout << "Enter roll numbers: ";
+    for (int i = 0; i < n; i++) {
+        cin >> x;
+        insert(A, x);
+    }
+
+    cout << "Enter students who like Butterscotch: ";
+    cin >> m;
+
+    cout << "Enter roll numbers: ";
+    for (int i = 0; i < m; i++) {
+        cin >> x;
+        insert(B, x);
+    }
+
+    cout << "\nVanilla: ";
+    display(A);
+
+    cout << "Butterscotch: ";
+    display(B);
+
+    cout << "\n1. Either or Both: ";
+    display(A);
+
+    Node *t = B;
+    while (t) {
+        if (!find(A, t->roll))
+            cout << t->roll << " ";
+        t = t->next;
+    }
+
+    cout << endl;
+
+    cout << "2. Both: ";
+    t = A;
+
+    while (t) {
+        if (find(B, t->roll))
+            cout << t->roll << " ";
+        t = t->next;
+    }
+
+    cout << endl;
+
+    cout << "3. Only Vanilla: ";
+    t = A;
+
+    while (t) {
+        if (!find(B, t->roll))
+            cout << t->roll << " ";
+        t = t->next;
+    }
+
+    return 0;
+}
