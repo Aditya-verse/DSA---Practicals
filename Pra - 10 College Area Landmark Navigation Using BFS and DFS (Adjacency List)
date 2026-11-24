@@ -1,0 +1,74 @@
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+using namespace std;
+
+vector<int> adj[5];
+
+string landmark[5] = {
+    "AISSMS College",
+    "Railway Station",
+    "Bus Stand",
+    "Ruby Hall Clinic",
+    "Sassoon Hospital"
+};
+
+bool visited[5] = {};
+
+void BFS(int s) {
+    queue<int> q;
+
+    visited[s] = true;
+    q.push(s);
+
+    int step = 1;
+
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop();
+
+        cout << step++ << ". " << landmark[v] << "\n";
+
+        for (int u : adj[v]) {
+            if (!visited[u]) {
+                visited[u] = true;
+                q.push(u);
+            }
+        }
+    }
+}
+
+int main() {
+    int s;
+
+    adj[0] = {1, 2};
+    adj[1] = {0, 3};
+    adj[2] = {0, 4};
+    adj[3] = {1};
+    adj[4] = {2};
+
+    cout << " COLLEGE AREA LANDMARK NAVIGATION\n";
+    cout << " BFS - ADJACENCY LIST\n";
+
+    cout << "\nAvailable Landmarks:\n";
+
+    for (int i = 0; i < 5; i++)
+        cout << i << ". " << landmark[i] << "\n";
+
+    cout << "Enter starting landmark (0-4): ";
+    cin >> s;
+
+    if (s < 0 || s > 4) {
+        cout << "\nInvalid landmark number!\n";
+        return 0;
+    }
+
+    cout << "\nBFS Traversal:\n";
+    BFS(s);
+
+    cout << "BFS traversal completed successfully!\n";
+
+    return 0;
+}
