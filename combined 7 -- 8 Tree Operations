@@ -1,0 +1,197 @@
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node *left, *right;
+};
+
+// Insert a new node
+Node* insert(Node* root, int x, bool mirrored) {
+    if (root == NULL) {
+        Node* p = new Node;
+        p->data = x;
+        p->left = p->right = NULL;
+        return p;
+    }
+
+    if (!mirrored) {
+        if (x < root->data)
+            root->left = insert(root->left, x, mirrored);
+        else if (x > root->data)
+            root->right = insert(root->right, x, mirrored);
+    }
+    else {
+        if (x > root->data)
+            root->left = insert(root->left, x, mirrored);
+        else if (x < root->data)
+            root->right = insert(root->right, x, mirrored);
+    }
+
+    return root;
+}
+
+// Find height (longest path from root)
+int height(Node* root) {
+    if (root == NULL)
+        return 0;
+
+    int l = height(root->left);
+    int r = height(root->right);
+
+    return 1 + (l > r ? l : r);
+}
+
+// Find minimum data value
+int minimum(Node* root) {
+    if (root == NULL)
+        return -1;
+
+    int minValue = root->data;
+    int l = minimum(root->left);
+    int r = minimum(root->right);
+
+    if (root->left != NULL && l < minValue)
+        minValue = l;
+
+    if (root->right != NULL && r < minValue)
+        minValue = r;
+
+    return minValue;
+}
+
+// Mirror the tree
+void mirror(Node* root) {
+    if (root == NULL)
+        return;
+
+    Node* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    mirror(root->left);
+    mirror(root->right);
+}
+
+// Search a value
+bool search(Node* root, int x) {
+    if (root == NULL)
+        return false;
+
+    if (root->data == x)
+        return true;
+
+    return search(root->left, x) ||
+           search(root->right, x);
+}
+
+// Display BST using inorder traversal
+void inorder(Node* root) {
+    if (root != NULL) {
+        inorder(root->left);
+        cout << root->data << " ";
+        inorder(root->right);
+    }
+}
+
+int main() {
+    Node* root = NULL;
+    int n, x, ch;
+    bool mirrored = false;
+
+    cout << "====================================\n";
+    cout << "          BINARY SEARCH TREE\n";
+    cout << "====================================\n";
+
+    cout << "Enter number of nodes: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Invalid number of nodes!\n";
+        return 0;
+    }
+
+    cout << "Enter node values: ";
+
+    for (int i = 0; i < n; i++) {
+        cin >> x;
+        root = insert(root, x, mirrored);
+    }
+
+    do {
+        cout << "\n============= BST MENU =============\n";
+        cout << "1. Insert a new node\n";
+        cout << "2. Find longest path from root\n";
+        cout << "3. Find minimum data value\n";
+        cout << "4. Mirror the tree\n";
+        cout << "5. Search a value\n";
+        cout << "6. Display BST (Inorder)\n";
+        cout << "0. Exit\n";
+        cout << "====================================\n";
+
+        cout << "Enter your choice: ";
+        cin >> ch;
+
+        switch (ch) {
+
+            case 1:
+                cout << "Enter value to insert: ";
+                cin >> x;
+
+                root = insert(root, x, mirrored);
+
+                cout << "Node inserted successfully.\n";
+                cout << "BST: ";
+                inorder(root);
+                cout << "\n";
+                break;
+
+            case 2:
+                cout << "Nodes in longest path from root: "
+                     << height(root) << "\n";
+                break;
+
+            case 3:
+                cout << "Minimum data value: "
+                     << minimum(root) << "\n";
+                break;
+
+            case 4:
+                mirror(root);
+                mirrored = !mirrored;
+
+                cout << "Tree mirrored successfully.\n";
+                cout << "Inorder: ";
+                inorder(root);
+                cout << "\n";
+                break;
+
+            case 5:
+                cout << "Enter value to search: ";
+                cin >> x;
+
+                if (search(root, x))
+                    cout << "Value found in tree.\n";
+                else
+                    cout << "Value not found in tree.\n";
+                break;
+
+            case 6:
+                cout << "BST (Inorder): ";
+                inorder(root);
+                cout << "\n";
+                break;
+
+            case 0:
+                cout << "Program terminated successfully.\n";
+                break;
+
+            default:
+                cout << "Invalid choice! Please try again.\n";
+        }
+
+    } while (ch != 0);
+
+    return 0;
+}
