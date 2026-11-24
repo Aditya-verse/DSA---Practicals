@@ -1,0 +1,157 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT 1
+Merge Two Sorted Lists of Students
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To write a C++ program to merge two sorted lists of students
+containing their PRN, date and month, and produce a single sorted
+list.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a C++ program to store the details of students from Division A
+and Division B. Each student record contains:
+   - PRN
+   - Date
+   - Month
+
+The student records of both divisions are already sorted. Merge the
+two sorted lists into a single list while maintaining the sorted
+order according to month and date.
+
+
+3) OBJECTIVE
+--------------------------------------------------------------------
+   - To understand the concept of structures in C++.
+   - To store student information using a structure.
+   - To understand the merging of two sorted arrays.
+   - To compare records based on month and date.
+   - To create a single sorted list from two sorted lists.
+   - To understand the use of multiple pointers/indexes during
+     merging.
+
+
+4) THEORY
+--------------------------------------------------------------------
+A structure in C++ is a user-defined data type that groups related
+data members under one name. In this program, the student structure
+is used to store the PRN, date and month of each student.
+
+The program takes two already sorted student lists from Division A
+and Division B and merges them into a single list. During merging,
+the month is compared first. If the months are equal, the dates are
+compared. The record with the smaller value is inserted into the
+merged array.
+
+
+5) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Define the student structure with PRN, date and month.
+Step 3 : Enter the number and details of students in Division A.
+Step 4 : Enter the number and details of students in Division B.
+Step 5 : Create a third array C to store the merged list.
+Step 6 : Initialize i, j and k to 0.
+Step 7 : Compare the months of the current records of both lists.
+Step 8 : If the months are equal, compare their dates.
+Step 9 : Insert the appropriate student record in array C.
+Step 10: Repeat the whole process until one list is completely
+         processed.
+Step 11: Copy the remaining records of the other list into C.
+Step 12: Display the final merged sorted list.
+Step 13: Stop the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+
+                 +-------------+
+                 |    START    |
+                 +------+------+
+                        |
+                        v
+          +----------------------------+
+          | Define student structure   |
+          | (PRN, date, month)         |
+          +-------------+--------------+
+                        |
+                        v
+          /----------------------------\
+         /  Input n1 and records of     \
+         \  Division A (array A)        /
+          \----------------------------/
+                        |
+                        v
+          /----------------------------\
+         /  Input n2 and records of     \
+         \  Division B (array B)        /
+          \----------------------------/
+                        |
+                        v
+          +----------------------------+
+          | Create array C             |
+          | Initialize i = 0, j = 0,   |
+          | k = 0                      |
+          +-------------+--------------+
+                        |
+                        v
+                +---------------+
+      +-------->| i < n1 AND    |---- No ----+
+      |         | j < n2 ?      |            |
+      |         +-------+-------+            |
+      |                 | Yes                |
+      |                 v                    |
+      |         +---------------+            |
+      |         | Is A[i] before|            |
+      |         | B[j]?         |            |
+      |         | (month first; |            |
+      |         | if equal,     |            |
+      |         | compare date) |            |
+      |         +---+-------+---+            |
+      |         Yes |       | No             |
+      |             v       v                |
+      |      +----------+ +----------+       |
+      |      | C[k]=A[i]| | C[k]=B[j]|       |
+      |      | i++, k++ | | j++, k++ |       |
+      |      +----+-----+ +-----+----+       |
+      |           |             |            |
+      +-----------+-------------+            |
+                                             |
+                        +--------------------+
+                        |
+                        v
+          +----------------------------+
+          | Copy remaining records of  |
+          | A (if any) into C, then    |
+          | remaining records of B     |
+          | (if any) into C            |
+          +-------------+--------------+
+                        |
+                        v
+          /----------------------------\
+         /  Display merged sorted       \
+         \  list C                      /
+          \----------------------------/
+                        |
+                        v
+                 +-------------+
+                 |    STOP     |
+                 +-------------+
+
+
+6) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program to merge two sorted student lists was successfully
+implemented in C++. The student records of Division A and Division B
+were combined into a single list by comparing their month and date.
+The practical helped in understanding the use of structures, arrays
+and the merging technique in C++.
