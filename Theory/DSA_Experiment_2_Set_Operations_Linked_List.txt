@@ -1,0 +1,185 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT 2
+Implementation of Set Operations Using Linked List
+====================================================================
+
+1) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a program to store two sets of students using linked lists,
+where Set A contains students who like vanilla ice-cream and Set B
+contains students who like butterscotch ice-cream. Compute and
+display:
+   1) Students who like vanilla or butterscotch or both.
+   2) Students who like both vanilla and butterscotch.
+   3) Students who like only vanilla and not butterscotch.
+
+
+2) AIM
+--------------------------------------------------------------------
+To implement basic set operations using linked lists and determine
+the union, intersection and difference of two student sets.
+
+
+3) THEORY
+--------------------------------------------------------------------
+A linked list is a dynamic data structure made up of nodes. Each
+node stores the required data along with a pointer that points to
+the next node. The nodes can be stored at different memory
+locations.
+
+In this practical, two linked lists are used to represent students'
+preferences:
+   - Set A : Students who prefer vanilla ice-cream.
+   - Set B : Students who prefer butterscotch ice-cream.
+
+The required operations are:
+
+1) Union (A U B)
+   - The union contains students who like vanilla, butterscotch or
+     both.
+   - Each student from Set A is added first, followed by students
+     from Set B who are not already present.
+
+2) Intersection (A n B)
+   - The intersection contains students who like both vanilla and
+     butterscotch.
+   - Each student in Set A is checked against Set B. If the student
+     is present in both lists, the student is included in the
+     result.
+
+3) Difference (A - B)
+   - The difference contains students who prefer vanilla but do not
+     prefer butterscotch.
+   - Each student in Set A is checked against Set B. If the student
+     is not found in Set B, the student is included in the result.
+
+The linked-list approach provides dynamic memory allocation and
+demonstrates the practical implementation of set operations without
+using built-in set containers.
+
+
+4) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Create a node structure containing the student's name and a
+         link to the next node.
+Step 3 : Initialize two linked lists, A and B.
+Step 4 : Enter student names and insert them into the appropriate
+         list.
+Step 5 : Display the elements of both sets.
+Step 6 : For union, copy the students of A and add only those
+         students from B who are not already present.
+Step 7 : For intersection, compare each student of A with B and
+         store the common students.
+Step 8 : For difference, check each student of Set A and select
+         students who are absent from Set B.
+Step 9 : Display the union, intersection and difference results.
+Step 10: Free the allocated memory.
+Step 11: End the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Create node structure    |
+            | (student name, next ptr) |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Initialize linked lists  |
+            | A (vanilla) and          |
+            | B (butterscotch)         |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Enter student names and      \
+          \  insert into list A / list B  /
+           \-----------------------------/
+                         |
+                         v
+           /-----------------------------\
+          /  Display elements of A and B  \
+          \                               /
+           \-----------------------------/
+                         |
+                         v
+        +-------------------------------------+
+        | UNION (A U B)                       |
+        | Copy all students of A into result  |
+        | For each student of B:              |
+        |    if not already present -> add    |
+        +------------------+------------------+
+                           |
+                           v
+        +-------------------------------------+
+        | INTERSECTION (A n B)                |
+        | For each student of A:              |
+        |    if present in B -> add to result |
+        +------------------+------------------+
+                           |
+                           v
+        +-------------------------------------+
+        | DIFFERENCE (A - B)                  |
+        | For each student of A:              |
+        |    if NOT present in B -> add       |
+        +------------------+------------------+
+                           |
+                           v
+           /-----------------------------\
+          /  Display union, intersection  \
+          \  and difference results       /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Free the allocated       |
+            | memory                   |
+            +------------+-------------+
+                         |
+                         v
+                  +-------------+
+                  |     END     |
+                  +-------------+
+
+
+SEARCH CHECK USED IN ALL THREE OPERATIONS (sub-flowchart)
+--------------------------------------------------------------------
+
+   temp = head of list to search
+        |
+        v
+   +--> Is temp NULL? --- Yes ---> Student NOT FOUND
+   |        |
+   |       No
+   |        |
+   |        v
+   |   Is temp->name == student? --- Yes ---> Student FOUND
+   |        |
+   |       No
+   |        |
+   |        v
+   |   temp = temp->next
+   |        |
+   +--------+
+
+
+5) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program successfully performs union, intersection and
+difference operations on two sets using linked lists. It identifies
+students according to their vanilla and butterscotch preferences
+and demonstrates the practical use of linked lists, traversal,
+searching and dynamic memory allocation.

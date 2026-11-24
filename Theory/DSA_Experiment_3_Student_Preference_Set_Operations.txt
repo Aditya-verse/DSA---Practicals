@@ -1,0 +1,194 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT 3
+Student Preference Set Operations Using Linked List
+====================================================================
+
+1) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a program to store two sets of students using linked lists,
+where Set A contains students who like Vanilla ice-cream and Set B
+contains students who like Butterscotch ice-cream. Compute and
+display:
+   1) Students who like only Butterscotch and not Vanilla.
+   2) The number of students who like neither Vanilla nor
+      Butterscotch.
+
+
+2) AIM
+--------------------------------------------------------------------
+To perform difference and complement-related set operations using
+linked lists, and to identify students who prefer only Butterscotch
+and those who do not prefer either ice-cream.
+
+
+3) THEORY
+--------------------------------------------------------------------
+A linked list is a dynamic data structure consisting of nodes. Each
+node stores the required information and a pointer to the next node.
+It allows elements to be stored dynamically without requiring
+continuous memory locations.
+
+In this practical, two linked lists are used:
+   - Set A : Students who like Vanilla ice-cream.
+   - Set B : Students who like Butterscotch ice-cream.
+
+The following operations are performed:
+
+1) Only Butterscotch (B - A)
+   - This operation gives the students who like Butterscotch but do
+     not like Vanilla.
+   - Each student in Set B is checked against Set A. If the student
+     is not found in Set A, the student is included in the result.
+
+2) Neither Vanilla nor Butterscotch
+   - These are the students who are not present in either Set A or
+     Set B.
+   - The total number of students in the class is considered. First,
+     the number of students present in the union of A and B is
+     obtained. Then:
+
+        Neither = Total Students - No. of Students in (A U B)
+
+
+4) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Define a node structure containing the student's name and a
+         pointer to the next node.
+Step 3 : Create two linked lists, A and B, for Vanilla and
+         Butterscotch preferences.
+Step 4 : Accept the names of students and insert them into the
+         respective lists.
+Step 5 : Accept the total number of students in the class.
+Step 6 : Traverse Set B and check each student in Set A.
+Step 7 : If a student from B is not found in A, add the student to
+         the "only Butterscotch" result and find the union students
+         present in A U B.
+Step 8 : Find the number of students who like neither:
+            Neither = Total Students - Union Count
+Step 9 : Display the students who like only Butterscotch.
+Step 10: Display the number of students who like neither Vanilla nor
+         Butterscotch.
+Step 11: Release the dynamically allocated memory.
+Step 12: Stop the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Define node structure    |
+            | (student name, next ptr) |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Create linked lists      |
+            | A (Vanilla) and          |
+            | B (Butterscotch)         |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Accept student names and     \
+          \  insert into list A / list B  /
+           \-----------------------------/
+                         |
+                         v
+           /-----------------------------\
+          /  Accept total number of       \
+          \  students in the class        /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | temp = head of list B    |
+            +------------+-------------+
+                         |
+                         v
+                +-----------------+
+      +-------->|  temp != NULL ? |---- No ----+
+      |         +--------+--------+            |
+      |                  | Yes                 |
+      |                  v                     |
+      |         +-----------------+            |
+      |         | Is temp's       |            |
+      |         | student found   |            |
+      |         | in list A ?     |            |
+      |         +----+-------+----+            |
+      |          Yes |       | No              |
+      |              |       v                 |
+      |              |  +------------------+   |
+      |              |  | Add student to   |   |
+      |              |  | "only            |   |
+      |              |  | Butterscotch"    |   |
+      |              |  | result           |   |
+      |              |  +--------+---------+   |
+      |              |           |             |
+      |              v           v             |
+      |         +-----------------+            |
+      |         | temp = temp->   |            |
+      |         | next            |            |
+      |         +--------+--------+            |
+      |                  |                     |
+      +------------------+                     |
+                                               |
+                         +---------------------+
+                         |
+                         v
+            +--------------------------+
+            | Find union count =       |
+            | number of students in    |
+            | (A U B)                  |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Neither = Total Students |
+            |           - Union Count  |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Display students who like    \
+          \  only Butterscotch            /
+           \-----------------------------/
+                         |
+                         v
+           /-----------------------------\
+          /  Display number of students   \
+          \  who like neither             /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Release dynamically      |
+            | allocated memory         |
+            +------------+-------------+
+                         |
+                         v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+5) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program successfully performs the required set operations
+using linked lists. The difference operation identifies students who
+like only Butterscotch, while the total class count and the union
+operation are used to determine the number of students who like
+neither Vanilla nor Butterscotch. This practical demonstrates
+linked-list traversal, searching, dynamic memory allocation and
+basic set operations.

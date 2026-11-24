@@ -1,0 +1,170 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 06
+Dictionary Implementation Using Binary Search Tree (BST)
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To implement a dictionary using a Binary Search Tree (BST) in C++,
+providing facilities to add, delete, search and update keywords and
+their meanings, display entries in ascending or descending order,
+and determine the maximum number of comparisons required to find a
+keyword.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a C++ program to implement a dictionary using a Binary Search
+Tree (BST). Each node stores a keyword and its meaning.
+
+The system should perform the following operations:
+   1) Add a new keyword with its meaning.
+   2) Delete an existing keyword.
+   3) Search for a keyword and display its meaning.
+   4) Display all dictionary entries in ascending order.
+   5) Update the meaning of an existing keyword.
+   6) Display all dictionary entries in descending order.
+   7) Calculate the maximum number of comparisons required to search
+      for a keyword.
+
+
+3) OBJECTIVES
+--------------------------------------------------------------------
+   - To understand the concept of a Binary Search Tree.
+   - To store keywords and meanings in dictionary format.
+   - To perform insertion, deletion, searching and updating
+     operations.
+   - To display dictionary entries in ascending and descending
+     order.
+   - To calculate the maximum number of comparisons required for
+     searching a keyword.
+
+
+4) THEORY
+--------------------------------------------------------------------
+A Binary Search Tree (BST) is a binary tree in which each node
+contains a key and associated data. Every node has at most two
+children. In this experiment, the keyword acts as the key, and its
+meaning is the associated data.
+
+Properties of a BST:
+   - Keywords smaller than the root are stored in the left subtree.
+   - Keywords greater than the root are stored in the right subtree.
+   - Duplicate keywords are not inserted.
+   - Each node stores a keyword, its meaning, and pointers to its
+     left and right children.
+
+
+5) OPERATIONS PERFORMED
+--------------------------------------------------------------------
+1. Insertion  : Adds a new keyword at its correct position.
+2. Deletion   : Removes a keyword while maintaining the BST
+                properties.
+3. Searching  : Compares the required keyword with nodes and moves
+                left or right.
+4. Updating   : Changes the meaning of an existing keyword.
+5. Ascending  : Inorder traversal (Left, Root, Right).
+6. Descending : Reverse inorder traversal (Right, Root, Left).
+
+Maximum comparisons required to search for a keyword are equal to
+the height of the BST, measured as the number of nodes on its
+longest root-to-leaf path. In the worst case, a skewed BST with n
+nodes requires n comparisons.
+
+   - Average / balanced BST search : approximately O(log n)
+   - Worst-case BST search         : O(n)
+
+
+6) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Create a BST node containing a keyword, its meaning, and
+         left and right pointers.
+Step 3 : Initialize the root to NULL.
+Step 4 : Display the menu to the user.
+Step 5 : If the choice is Add, insert the keyword and meaning at the
+         correct position.
+Step 6 : If the choice is Delete, search for the keyword and delete
+         its node while maintaining the BST properties.
+Step 7 : If the choice is Search, find the keyword and display its
+         meaning.
+Step 8 : If the choice is Update, search for the keyword and modify
+         its meaning.
+Step 9 : If the choice is Descending, perform reverse inorder
+         traversal.
+Step 10: If the choice is Ascending, perform inorder traversal.
+Step 11: If the choice is Maximum Comparisons, calculate the height
+         of the BST.
+Step 12: Repeat the menu until the user selects Exit.
+Step 13: Stop the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+(The notebook has no flowchart for this practical; this one is
+ drawn from the algorithm above.)
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Create BST node          |
+            | (keyword, meaning,       |
+            |  left, right)            |
+            | root = NULL              |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Display menu and accept      \  <-----------+
+          \  user's choice                /              |
+           \-----------------------------/               |
+                         |                                |
+                         v                                |
+                +-----------------+                       |
+                |  Is choice =    |---- Yes ----+         |
+                |  Exit ?         |             |         |
+                +--------+--------+             |         |
+                         | No                   |         |
+                         v                      |         |
+            +--------------------------+        |         |
+            | Perform selected         |        |         |
+            | operation (see below)    |--------+----+    |
+            +--------------------------+        |    |    |
+                                                |    +----+
+                                                v
+                                         +-------------+
+                                         |    STOP     |
+                                         +-------------+
+
+SELECTED OPERATION (what happens inside the box above)
+
+   Add           -> Insert keyword and meaning at the correct
+                    position in the BST
+   Delete        -> Search for the keyword; delete its node while
+                    maintaining the BST properties
+   Search        -> Find the keyword; display its meaning
+   Update        -> Search for the keyword; modify its meaning
+   Ascending     -> Inorder traversal (Left, Root, Right)
+   Descending    -> Reverse inorder traversal (Right, Root, Left)
+   Max comparisons -> Calculate the height of the BST
+
+   After any operation, control returns to the menu.
+
+
+7) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program to implement a dictionary using a Binary Search
+Tree was successfully implemented. The program performs insertion,
+deletion, searching and updating of keywords and their meanings. It
+also displays dictionary entries in ascending and descending order
+and calculates the maximum number of comparisons required for
+searching.

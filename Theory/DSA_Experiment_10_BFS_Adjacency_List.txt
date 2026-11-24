@@ -1,0 +1,167 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 10
+Breadth First Search (BFS)
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To represent the map of the area around the college as a graph using
+an adjacency list and perform Breadth First Search (BFS) traversal
+on the graph.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Represent the area around AISSMS College of Engineering, Pune, as a
+graph. Identify prominent landmarks as vertices and roads connecting
+them as edges. Use an adjacency list representation and perform BFS
+to traverse the graph.
+
+
+3) OBJECTIVES
+--------------------------------------------------------------------
+   - To understand graph representation using an adjacency list.
+   - To implement Breadth First Search.
+   - To traverse landmarks level by level.
+   - To understand the use of a queue in graph traversal.
+
+
+4) THEORY
+--------------------------------------------------------------------
+Adjacency List:
+An adjacency list represents a graph by storing a list of adjacent
+vertices for each vertex. It stores only the existing connections
+and is memory efficient for sparse graphs.
+
+For an undirected graph, if landmark A is connected to landmark B,
+both landmarks appear in each other's adjacency lists.
+
+Breadth First Search (BFS):
+BFS is a graph traversal technique that visits vertices level by
+level. It first visits the starting vertex, then all its adjacent
+vertices, followed by the vertices at the next level.
+
+BFS uses a queue, which follows the First In, First Out (FIFO)
+principle. A visited array prevents the same vertex from being added
+repeatedly.
+
+Applications of BFS:
+   1) Finding the shortest path in an unweighted graph.
+   2) Exploring nearby locations first.
+   3) Finding connected components.
+   4) Network and social graph traversal.
+
+
+5) FLOWCHART
+--------------------------------------------------------------------
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Input landmarks and      |
+            | connections              |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Create adjacency list    |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Initialize visited array |
+            | and empty queue          |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Select starting vertex,  |
+            | mark visited and enqueue |
+            +------------+-------------+
+                         |
+                         v
+                +-----------------+
+      +-------->| Is queue empty? |---- Yes ----+
+      |         +--------+--------+             |
+      |                  | No                   |
+      |                  v                      |
+      |     +--------------------------+        |
+      |     | Dequeue front vertex and |        |
+      |     | display it               |        |
+      |     +------------+-------------+        |
+      |                  |                      |
+      |                  v                      |
+      |     +--------------------------+        |
+      |     | Check its adjacent       |        |
+      |     | vertices                 |        |
+      |     +------------+-------------+        |
+      |                  |                      |
+      |                  v                      |
+      |         +-----------------+             |
+      |   +---->| Any unvisited   |             |
+      |   |     | adjacent vertex?|             |
+      |   |     +----+-------+----+             |
+      |   |      Yes |       | No               |
+      |   |          v       v                  |
+      |   |   +-----------+ +----------+        |
+      |   |   | Mark      | | Continue |        |
+      |   |   | visited & | +----+-----+        |
+      |   |   | enqueue   |      |              |
+      |   |   +-----+-----+      |              |
+      |   +---------+            |              |
+      +------------------------- +              |
+                                                |
+                         +----------------------+
+                         |
+                         v
+                +-----------------+
+                | Are any vertices|---- Yes ---> Choose next unvisited
+                | unvisited ?     |              vertex, mark visited
+                +--------+--------+              and enqueue, then go
+                         | No                    back to "Is queue
+                         v                       empty?"
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+6) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start.
+Step 2 : Read the number of landmarks and their names.
+Step 3 : Create an empty adjacency list for each landmark.
+Step 4 : Enter the connections between landmarks.
+Step 5 : Select the starting landmark.
+Step 6 : Mark the starting vertex as visited and insert it into the
+         queue.
+Step 7 : Remove the front vertex from the queue and display it.
+Step 8 : Add all its unvisited adjacent vertices to the queue and
+         mark them visited.
+Step 9 : Repeat until the queue is empty. If disconnected landmarks
+         remain, start another traversal from an unvisited vertex.
+Step 10: Stop.
+
+
+7) TIME COMPLEXITY
+--------------------------------------------------------------------
+   - Time complexity  : O(V + E), because each vertex and each edge
+                        is processed at most a constant number of
+                        times.
+   - Space complexity : O(V + E) for the adjacency list, plus O(V)
+                        for the queue and visited array.
+
+
+8) CONCLUSION
+--------------------------------------------------------------------
+Thus, the landmarks around the college were represented as a graph
+using an adjacency list, and Breadth First Search was implemented
+successfully to traverse the graph level by level.

@@ -1,0 +1,180 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 11
+Flight Routes Using a Weighted Graph
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To represent flight routes between cities using a weighted graph in
+C++, where cities are vertices, flight routes are edges, and edge
+weights represent flight time or fuel consumption, and to justify
+the selected graph storage representation.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+There are flight paths between different cities. If a flight exists
+between city A and city B, an edge connects the two cities. The edge
+weight represents the time taken by the flight or the amount of fuel
+consumed during the journey.
+
+Represent this flight network using a graph in which each node
+represents a city or airport. Use an adjacency list or adjacency
+matrix representation and justify the storage representation used.
+
+
+3) OBJECTIVE
+--------------------------------------------------------------------
+   - To understand weighted graph representation.
+   - To represent cities as vertices and flight routes as weighted
+     edges.
+   - To implement a graph using an adjacency list in C++.
+   - To store flight time or fuel consumption as edge weights.
+   - To justify the selected graph representation based on memory
+     usage and efficiency.
+
+
+4) THEORY
+--------------------------------------------------------------------
+A graph is a non-linear data structure consisting of vertices and
+edges. In a flight network, each city or airport is represented as a
+vertex, and a direct flight between two cities is represented as an
+edge.
+
+A weighted graph is a graph in which each edge has a numerical value
+called a weight. In this experiment, the weight can represent flight
+duration in hours or fuel consumption in litres.
+
+Flight routes can be represented as a directed graph if flights are
+available in only one direction. If flights are available in both
+directions, the routes can be represented by edges in both
+directions.
+
+Example of a weighted flight graph:
+
+                    2.0 h
+        (Mumbai) -------------> (Delhi)
+            |                      |
+            | 0.8 h                | 2.2 h
+            v                      v
+         (Pune) -------------> (Kolkata)
+                    2.3 h
+
+Graph storage representations:
+   1) Adjacency Matrix
+   2) Adjacency List
+
+Justification for using an adjacency list:
+An adjacency list is selected because flight networks generally have
+fewer direct connections than the total number of possible city
+pairs. It stores only the existing routes and their weights.
+
+   - Requires O(V + E) space, where V is the number of cities and E
+     is the number of flight routes.
+   - Makes it easy to list all direct flights from a city.
+   - Supports weighted and directed routes.
+   - Avoids allocating space for every possible city-to-city
+     connection, unlike an adjacency matrix, which requires O(V^2)
+     space.
+
+
+5) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Read the number of cities and assign a name to each city.
+Step 3 : Create an adjacency list to store the flight routes and
+         their weights.
+Step 4 : Read the number of flight routes.
+Step 5 : For each route, read the source city, destination city, and
+         flight time or fuel cost.
+Step 6 : Store the destination city and weight in the source city's
+         adjacency list.
+Step 7 : Display each city and its outgoing flight routes with their
+         respective weights.
+Step 8 : Stop the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+(The notebook has no flowchart for this practical; this one is drawn
+ from the algorithm above.)
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+           /-----------------------------\
+          /  Read number of cities and    \
+          \  assign a name to each city   /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Create adjacency list    |
+            | (routes and weights)     |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Read number of flight        \
+          \  routes (E)                   /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | i = 1                    |
+            +------------+-------------+
+                         |
+                         v
+                +-----------------+
+      +-------->|    i <= E ?     |---- No ----+
+      |         +--------+--------+            |
+      |                  | Yes                 |
+      |                  v                     |
+      |   /-----------------------------\      |
+      |  /  Read source city, destination \    |
+      |  \  city and flight time / fuel   /    |
+      |   \-----------------------------/      |
+      |                  |                     |
+      |                  v                     |
+      |     +--------------------------+       |
+      |     | Store destination city   |       |
+      |     | and weight in source     |       |
+      |     | city's adjacency list    |       |
+      |     +------------+-------------+       |
+      |                  |                     |
+      |                  v                     |
+      |            +------------+              |
+      +------------|   i = i+1  |              |
+                   +------------+              |
+                                               |
+                         +---------------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Display each city and its    \
+          \  outgoing flight routes with   /
+           \ their weights               /
+            \---------------------------/
+                         |
+                         v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+6) CONCLUSION
+--------------------------------------------------------------------
+Thus, a weighted flight network was successfully represented using
+an adjacency list in C++. Cities were represented as vertices,
+flight routes as directed edges, and edge weight as flight time or
+fuel consumption. The adjacency list was selected because it uses
+memory efficiently by storing only existing flight routes, making it
+suitable for a sparse flight network.

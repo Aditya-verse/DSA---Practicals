@@ -1,0 +1,230 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT 4
+Infix to Postfix Conversion and Postfix Evaluation Using Stack
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To write a C++ program to convert an infix expression into a postfix
+expression and evaluate the postfix expression using a stack.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a C++ program to implement expression conversion from infix to
+postfix and its evaluation using a stack, based on the following
+conditions:
+   i)   Operands and operators must be single characters.
+   ii)  The input postfix expression must be in the desired format.
+   iii) Only +, -, * and / operators are expected.
+
+The program should accept an infix expression, convert it into its
+equivalent postfix expression using stack operations, and evaluate
+the postfix expression to obtain the final result.
+
+
+3) OBJECTIVE
+--------------------------------------------------------------------
+   - To understand the concept of the stack data structure.
+   - To understand the LIFO (Last In First Out) principle.
+   - To perform push and pop operations on a stack.
+   - To convert an infix expression into a postfix expression.
+   - To understand and apply operator precedence.
+   - To evaluate a postfix expression using a stack.
+   - To perform arithmetic operations using operands stored in the
+     stack.
+
+
+4) THEORY
+--------------------------------------------------------------------
+A stack is a linear data structure that follows the LIFO (Last In
+First Out) principle. The element inserted last is removed first.
+
+In expression conversion, a stack is used to temporarily store
+operators and parentheses while scanning the infix expression.
+Operands are directly added to the postfix expression, while
+operators are pushed or popped according to their precedence.
+
+An infix expression has the operator between operands, for example:
+        A + B
+
+A postfix expression has the operator after the operands, for
+example:
+        A B +
+
+The precedence of operators used in this practical is:
+
+        Operator        Precedence
+        *, /            Higher
+        +, -            Lower
+
+For example:
+        2 + 3 * 4       - Infix
+        2 3 4 * +       - Postfix
+        14              - Result
+
+
+5) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Define a stack to store operators.
+Step 3 : Read the infix expression from the user.
+Step 4 : Scan the expression from left to right.
+Step 5 : If the character is an operand, insert it into the postfix
+         expression.
+Step 6 : If the character is an operator, compare its precedence
+         with the operator at the top of the stack.
+Step 7 : Pop the operators having higher or equal precedence and
+         insert them into the postfix expression.
+Step 8 : Push the current operator into the stack.
+Step 9 : If ( is encountered, push it into the stack.
+Step 10: If ) is encountered, pop operators until ( is found.
+Step 11: Repeat the process until the complete expression is
+         scanned.
+Step 12: Pop all remaining operators from the stack.
+Step 13: Display the postfix expression.
+Step 14: Scan the postfix expression from left to right for
+         evaluation.
+Step 15: Push each operand into the stack.
+Step 16: When an operator is encountered, pop two operands from the
+         stack.
+Step 17: Perform the required arithmetic operation and push the
+         result back into the stack.
+Step 18: The remaining element in the stack is the final result.
+Step 19: Display the result.
+Step 20: Stop the program.
+
+
+FLOWCHART
+--------------------------------------------------------------------
+
+PART A : INFIX TO POSTFIX CONVERSION
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Define stack for         |
+            | operators                |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Read infix expression        \
+          \                               /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Scan next character ch   |
+            | (left to right)          |<-----------------+
+            +------------+-------------+                  |
+                         |                                |
+                         v                                |
+                +-----------------+                       |
+                |  Is ch an       |--- Yes --> Add ch to -+
+                |  operand ?      |            postfix    |
+                +--------+--------+                       |
+                         | No                             |
+                         v                                |
+                +-----------------+                       |
+                |  Is ch '(' ?    |--- Yes --> Push '(' --+
+                +--------+--------+                       |
+                         | No                             |
+                         v                                |
+                +-----------------+     Pop operators     |
+                |  Is ch ')' ?    |--- Yes --> to postfix |
+                +--------+--------+     until '(' found,  |
+                         | No           then discard '(' -+
+                         v                                |
+                +---------------------------+             |
+                | ch is an operator:        |             |
+                | while stack not empty AND |             |
+                | top has precedence >= ch: |             |
+                |    pop top -> postfix     |             |
+                | Push ch onto stack        |-------------+
+                +---------------------------+             |
+                                                          |
+                (when the whole expression is scanned)    |
+                         |  <-----------------------------+
+                         v
+            +--------------------------+
+            | Pop all remaining        |
+            | operators from stack     |
+            | to postfix               |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Display postfix expression   \
+          \                               /
+           \-----------------------------/
+                         |
+                         v
+                    (go to Part B)
+
+
+PART B : POSTFIX EVALUATION
+
+            +--------------------------+
+            | Define stack for         |
+            | operands                 |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Scan next character ch   |
+            | of postfix expression    |<-----------------+
+            | (left to right)          |                  |
+            +------------+-------------+                  |
+                         |                                |
+                         v                                |
+                +-----------------+                       |
+                |  Is ch an       |--- Yes --> Push ch ---+
+                |  operand ?      |            onto stack |
+                +--------+--------+                       |
+                         | No (operator)                  |
+                         v                                |
+            +--------------------------+                  |
+            | Pop two operands:        |                  |
+            | b = pop(), a = pop()     |                  |
+            | result = a (ch) b        |                  |
+            | Push result onto stack   |------------------+
+            +--------------------------+                  |
+                                                          |
+                (when the whole expression is scanned)    |
+                         |  <-----------------------------+
+                         v
+            +--------------------------+
+            | Final result = the       |
+            | remaining element in     |
+            | the stack                |
+            +------------+-------------+
+                         |
+                         v
+           /-----------------------------\
+          /  Display the result           \
+          \                               /
+           \-----------------------------/
+                         |
+                         v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+6) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program to convert an infix expression into a postfix
+expression and evaluate it using a stack was successfully
+implemented in C++. The practical helped in understanding stack
+operations, operator precedence, and expression conversion and
+evaluation using a stack.

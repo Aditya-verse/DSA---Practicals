@@ -1,0 +1,186 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 07
+Binary Search Tree Operations
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To construct a Binary Search Tree (BST) by inserting given values
+and perform insertion of a new node, finding the number of nodes in
+the longest path from the root, finding the minimum data value
+stored in the tree, swapping the left and right pointers at every
+node, and searching for a value.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Write a C++ program to construct a Binary Search Tree by inserting
+the given values in an initially empty tree. After constructing the
+tree, perform the following operations:
+   1) Insert a new node into the BST.
+   2) Find the number of nodes in the longest path from the root.
+   3) Find the minimum data value in the tree.
+   4) Swap the left and right pointers at every node of the tree.
+   5) Search for a given value in the tree.
+
+
+3) OBJECTIVE
+--------------------------------------------------------------------
+   - To understand the concept of a Binary Search Tree.
+   - To construct a BST by inserting given values.
+   - To calculate the number of nodes in the longest path from the
+     root.
+   - To find the minimum value stored in the tree.
+   - To interchange the left and right pointers at every node.
+   - To search for a given value in the tree.
+
+
+4) THEORY
+--------------------------------------------------------------------
+A Binary Search Tree (BST) is a binary tree in which values smaller
+than a node are stored in its left subtree, while values greater
+than a node are stored in its right subtree.
+
+Structure of a Binary Search Tree:
+
+Consider inserting the values 50, 30, 70, 20, 40, 60, 80 into an
+initially empty BST.
+
+                     (50)
+                    /    \
+                 (30)    (70)
+                 /  \    /  \
+              (20) (40) (60) (80)
+
+   Left subtree of 50 : 30, 20, 40
+   Right subtree of 50: 70, 60, 80
+
+Operations Performed:
+
+1) Insertion of a new node
+   To insert a new value, start from the root. If the value is
+   smaller than the current node, move to the left subtree. If it is
+   greater, move to the right subtree. Insert the new node at the
+   first empty position found.
+
+2) Finding the longest path from the root
+   The longest path from the root to a leaf is determined by the
+   height of the tree. The height can be calculated recursively:
+
+        H(T) = 1 + max( H(TL), H(TR) )
+
+   Here, TL and TR represent the left and right subtrees.
+
+3) Finding the minimum data value
+   In a BST, the minimum value is found by repeatedly moving to the
+   left child from the root until no further left child exists. The
+   leftmost node contains the minimum value. If the root has no left
+   child, then the root itself contains the minimum value. This
+   operation takes O(h) time, where h is the height of the tree.
+
+
+5) FLOWCHART
+--------------------------------------------------------------------
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+           /-----------------------------\
+          /  Read number of nodes and     \
+          \  their values                 /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Construct BST by         |
+            | inserting values         |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Display operations menu  |<----------------------+
+            +------------+-------------+                       |
+                         |                                     |
+                         v                                     |
+            +--------------------------+                       |
+            | Select operation         |                       |
+            +------------+-------------+                       |
+                         |                                     |
+                         v                                     |
+                +-----------------+                            |
+                |  Choice = ?     |                            |
+                +--+-----+-----+--+--+                         |
+                   |     |     |     |                         |
+        +----------+     |     |     +------- Exit --+         |
+        | 1. Insert      |     |                      |         |
+        v                |     |                      |         |
+  /-------------\        |     |                      |         |
+ / Read new value \      |     |                      |         |
+ \                /      |     |                      |         |
+  \--------------/       |     |                      |         |
+        |                |     |                      |         |
+        v                |     |                      |         |
+  Insert into BST        |     |                      |         |
+        |                |     |                      |         |
+        v                |     |                      |         |
+  Display node count     |     |                      |         |
+        |                |     |                      |         |
+        |   +------------+     |                      |         |
+        |   | 2. Longest path  |                      |         |
+        |   v                  |                      |         |
+        | Calculate height     |                      |         |
+        | recursively          |                      |         |
+        |   |                  |                      |         |
+        |   v                  |                      |         |
+        | Display node count   |                      |         |
+        |   |        +---------+                      |         |
+        |   |        | 3. Minimum value               |         |
+        |   |        v                                |         |
+        |   |   Traverse to leftmost node             |         |
+        |   |        |                                |         |
+        |   |        v                                |         |
+        |   |   Display minimum value                 |         |
+        |   |        |                                |         |
+        +---+--------+--------------------------------+---------+
+                   (every operation returns to the menu)
+
+                         Exit
+                          |
+                          v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+6) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start.
+Step 2 : Create an empty BST.
+Step 3 : Read the number of nodes and their values.
+Step 4 : Insert each value into the BST according to the BST
+         property.
+Step 5 : Display the operations menu.
+Step 6 : If insertion is selected, read a new value and insert it
+         into the tree.
+Step 7 : If longest path is selected, calculate the height
+         recursively and display the number of nodes.
+Step 8 : If minimum value is selected, traverse to the leftmost node
+         and display its value.
+Step 9 : Repeat the operations until the user selects Exit.
+Step 10: Stop.
+
+
+7) CONCLUSION
+--------------------------------------------------------------------
+Thus, a Binary Search Tree was successfully constructed, and the
+operations of inserting a new node, finding the number of nodes in
+the longest path, and finding the minimum data value were performed
+successfully.

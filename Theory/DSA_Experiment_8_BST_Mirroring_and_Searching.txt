@@ -1,0 +1,168 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 08
+Mirroring and Searching in a Binary Search Tree
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To construct a Binary Search Tree and perform the following
+operations:
+   1) Change the tree by swapping the left and right pointers at
+      every node.
+   2) Search for a given value in the tree.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Beginning with an empty Binary Search Tree, construct the tree by
+inserting the given values in the specified order. After
+constructing the tree, swap the left and right pointers at every
+node to create its mirror image, and search for a given value in the
+tree.
+
+
+3) OBJECTIVES
+--------------------------------------------------------------------
+   - To construct a Binary Search Tree.
+   - To understand the concept of mirroring a binary tree.
+   - To swap the left and right pointers at every node.
+   - To search for a particular value in a binary tree.
+
+
+4) THEORY
+--------------------------------------------------------------------
+Mirroring a Binary Tree:
+Mirroring a binary tree means interchanging the left and right child
+pointers of every node in the tree. The process is applied
+recursively to all nodes.
+
+For example, consider this tree:
+
+   Original tree                       Mirror tree
+
+         (50)                               (50)
+        /    \                             /    \
+     (30)    (70)                       (70)    (30)
+     /  \                                       /  \
+  (20) (40)                                  (40) (20)
+
+Searching in a Binary Tree:
+Searching is the process of checking whether a particular value
+exists in a tree. A recursive search checks the current node, its
+left and right subtrees; if the value is not found, the search
+continues.
+
+Important: After mirroring, the tree no longer follows the normal
+BST ordering property. Therefore, the program uses a general
+binary-tree search that checks both subtrees, instead of using the
+faster BST search method.
+
+
+5) FLOWCHART
+--------------------------------------------------------------------
+Operations: Swaps left and right pointers at every node, and
+searches for a given value.
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+           /-----------------------------\
+          /  Read number of nodes and     \
+          \  values                       /
+           \-----------------------------/
+                         |
+                         v
+            +--------------------------+
+            | Construct BST            |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Display operations menu  |<----------------------+
+            +------------+-------------+                       |
+                         |                                     |
+                         v                                     |
+            +--------------------------+                       |
+            | Select operation         |                       |
+            +------------+-------------+                       |
+                         |                                     |
+                         v                                     |
+                +-----------------+                            |
+                |  Choice = ?     |                            |
+                +--+-----+-----+--+                            |
+                   |     |     |                               |
+        +----------+     |     +------- Exit --+               |
+        | 1. Mirror      | 2. Search value      |               |
+        |    tree        |                      |               |
+        v                v                      |               |
+  Swap left and     /-------------\             |               |
+  right pointers   / Read target   \            |               |
+        |          \ value          /           |               |
+        v           \--------------/            |               |
+  Repeat recursively       |                    |               |
+  for all nodes            v                    |               |
+        |          Search current node          |               |
+        v          and subtrees                 |               |
+  Display mirror           |                    |               |
+  success message          v                    |               |
+        |          +---------------+            |               |
+        |          | Value found ? |            |               |
+        |          +---+-------+---+            |               |
+        |           Yes|       |No              |               |
+        |              v       v                |               |
+        |        Display   Display              |               |
+        |        found     not found            |               |
+        |              |       |                |               |
+        +--------------+-------+----------------+---------------+
+                 (every operation returns to the menu)
+
+                         Exit
+                          |
+                          v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+
+6) ALGORITHM
+--------------------------------------------------------------------
+Step 1 : Start.
+Step 2 : Create an empty Binary Search Tree.
+Step 3 : Read the number of nodes and their values.
+Step 4 : Insert each value into the BST according to the BST
+         property.
+Step 5 : Display the operations menu.
+Step 6 : If mirroring is selected, swap the left and right pointers
+         of every node recursively.
+Step 7 : If searching is selected, read the target value and search
+         the current node and both subtrees.
+Step 8 : Display whether the value is found or not found.
+Step 9 : Repeat until the user selects Exit.
+Step 10: Stop.
+
+
+7) TIME COMPLEXITY
+--------------------------------------------------------------------
+   - Mirroring a binary tree : O(n), because every node is visited
+                               once.
+   - Searching a value       : O(n) in the worst case, because the
+                               tree may need to be traversed
+                               completely.
+
+
+8) CONCLUSION
+--------------------------------------------------------------------
+Thus, the program to implement Binary Search Tree operations in C++
+was successfully developed. The program performs insertion, finds
+the number of nodes in the longest path, identifies the minimum
+value, swaps the left and right pointers at every node, and searches
+for a given value. This practical helped in understanding BST
+operations and tree traversal.

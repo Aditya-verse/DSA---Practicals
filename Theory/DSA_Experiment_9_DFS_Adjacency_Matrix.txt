@@ -1,0 +1,179 @@
+Name    : Aditya Arun Mane
+Roll No.: 26AI309
+Div     : B
+A.I.S.S.M.S COLLEGE OF ENGINEERING
+NO - 1, Kennedy Road, Near R.T.O, Pune - 411001
+
+====================================================================
+EXPERIMENT NO. 09
+Depth First Search (DFS)
+====================================================================
+
+1) AIM
+--------------------------------------------------------------------
+To represent the map of the area around the college as a graph using
+an adjacency matrix and perform Depth First Search (DFS) traversal
+on the graph.
+
+
+2) PROBLEM STATEMENT
+--------------------------------------------------------------------
+Represent the area around AISSMS College of Engineering, Pune, as a
+graph. Identify prominent landmarks as vertices and roads connecting
+them as edges. Use an adjacency matrix representation and perform
+DFS to traverse the graph.
+
+
+3) OBJECTIVES
+--------------------------------------------------------------------
+   - To understand graph representation using an adjacency matrix.
+   - To implement Depth First Search.
+   - To visit the connected landmarks systematically.
+   - To understand recursive graph traversal.
+
+
+4) THEORY
+--------------------------------------------------------------------
+Graph:
+A graph is a non-linear data structure consisting of vertices
+(nodes) and edges (connections). In this practical, landmarks
+represent vertices and the roads connecting the landmarks represent
+edges.
+
+Adjacency Matrix:
+An adjacency matrix is a two-dimensional array used to represent a
+graph. If an edge exists between two vertices, the corresponding
+matrix entry is 1; otherwise, it is 0.
+
+For an undirected graph, the matrix is symmetric, because an edge
+from vertex A to vertex B also connects B to A.
+
+Depth First Search (DFS):
+DFS is a graph traversal technique that explores one path as deeply
+as possible before backtracking. It can be implemented using
+recursion or a stack.
+
+The algorithm marks each visited vertex to avoid visiting it
+repeatedly, and then recursively explores its unvisited adjacent
+vertices.
+
+Applications:
+   1) Exploring connected locations.
+   2) Detecting cycles in graphs.
+
+
+5) FLOWCHART
+--------------------------------------------------------------------
+
+                  +-------------+
+                  |    START    |
+                  +------+------+
+                         |
+                         v
+            +--------------------------+
+            | Input landmarks and      |
+            | connections              |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Create adjacency matrix  |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Initialize all vertices  |
+            | as unvisited             |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Select starting vertex   |
+            +------------+-------------+
+                         |
+                         v
+                +-----------------+
+                | Is vertex       |---- Yes ---> +----------------+
+                | visited ?       |              | Return to      |
+                +--------+--------+              | previous call  |
+                         | No                    +----------------+
+                         v
+            +--------------------------+
+            | Mark vertex as visited   |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Display vertex           |
+            +------------+-------------+
+                         |
+                         v
+            +--------------------------+
+            | Check adjacent vertices  |
+            +------------+-------------+
+                         |
+                         v
+                +-----------------+
+                | Unvisited       |---- Yes ---> +----------------+
+                | adjacent vertex |              | Call DFS       |
+                | exists ?        |              | recursively    |
+                +--------+--------+              +----------------+
+                         | No
+                         v
+            +--------------------------+
+            | Return / Backtrack       |
+            +------------+-------------+
+                         |
+                         v
+                  +-------------+
+                  |    STOP     |
+                  +-------------+
+
+(In your notebook the "Yes" and "No" labels of the first decision box
+ are written the other way round. Here they are drawn the logical
+ way: if the vertex is already visited, return to the previous call;
+ otherwise mark it as visited and continue.)
+
+
+====================================================================
+NOTE: The pages for Algorithm, Time Complexity and Conclusion of
+Experiment 9 were not in your photos. The drafts below are written
+from your flowchart and theory. Replace them with your own notebook
+text if you have it.
+====================================================================
+
+6) ALGORITHM  (draft)
+--------------------------------------------------------------------
+Step 1 : Start the program.
+Step 2 : Read the number of landmarks and their names.
+Step 3 : Create an adjacency matrix of size V x V and initialize all
+         entries to 0.
+Step 4 : Enter the connections between landmarks and set the
+         corresponding matrix entries to 1 (symmetric for an
+         undirected graph).
+Step 5 : Initialize the visited array, marking all vertices as
+         unvisited.
+Step 6 : Select the starting landmark.
+Step 7 : Call DFS for the starting vertex.
+Step 8 : In DFS(v): mark v as visited and display it.
+Step 9 : For every vertex u in the row of v, if the matrix entry is 1
+         and u is unvisited, call DFS(u) recursively.
+Step 10: When no unvisited adjacent vertex remains, backtrack to the
+         previous call.
+Step 11: Stop.
+
+
+7) TIME COMPLEXITY  (draft)
+--------------------------------------------------------------------
+   - Time complexity  : O(V^2), because for every vertex the whole
+                        row of the adjacency matrix is scanned.
+   - Space complexity : O(V^2) for the adjacency matrix, plus O(V)
+                        for the visited array and the recursion
+                        stack.
+
+
+8) CONCLUSION  (draft)
+--------------------------------------------------------------------
+Thus, the landmarks around the college were represented as a graph
+using an adjacency matrix, and Depth First Search was implemented
+successfully to traverse the graph.
