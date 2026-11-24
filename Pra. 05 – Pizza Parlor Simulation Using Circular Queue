@@ -1,0 +1,112 @@
+
+#include <iostream>
+using namespace std;
+
+const int M = 5;
+
+class PizzaParlor {
+    int queue[M];
+    int front, rear, total;
+
+public:
+    PizzaParlor() {
+        front = 0;
+        rear = 0;
+        total = 0;
+    }
+
+    bool isFull() {
+        return total == M;
+    }
+
+    bool isEmpty() {
+        return total == 0;
+    }
+
+    void placeOrder() {
+        int order;
+
+        if (isFull()) {
+            cout << "\nSorry! Pizza parlor is full.\n";
+            return;
+        }
+
+        cout << "\nEnter order number: ";
+        cin >> order;
+
+        queue[rear] = order;
+        rear = (rear + 1) % M;
+        total++;
+
+        cout << "Order accepted successfully.\n";
+    }
+
+    void serveOrder() {
+        if (isEmpty()) {
+            cout << "\nNo orders are available to serve.\n";
+            return;
+        }
+
+        cout << "\nOrder " << queue[front] << " is served.\n";
+
+        front = (front + 1) % M;
+        total--;
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "\nNo pending orders.\n";
+            return;
+        }
+
+        int i = front;
+
+        cout << "\nPending orders: ";
+
+        for (int count = 0; count < total; count++) {
+            cout << queue[i] << " ";
+            i = (i + 1) % M;
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    PizzaParlor p;
+    int choice;
+
+    do {
+        cout << "\n\n===== PIZZA PARLOR =====";
+        cout << "\n1. Place Order";
+        cout << "\n2. Serve Order";
+        cout << "\n3. Display Pending Orders";
+        cout << "\n4. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                p.placeOrder();
+                break;
+
+            case 2:
+                p.serveOrder();
+                break;
+
+            case 3:
+                p.display();
+                break;
+
+            case 4:
+                cout << "\nThank you!\n";
+                break;
+
+            default:
+                cout << "\nInvalid choice.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
