@@ -1,0 +1,61 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int adj[5][5] = {
+    {0, 1, 1, 0, 0},
+    {1, 0, 0, 1, 0},
+    {1, 0, 0, 0, 1},
+    {0, 1, 0, 0, 0},
+    {0, 0, 1, 0, 0}
+};
+
+string landmark[5] = {
+    "College", "Railway Station", "Bus Stand",
+    "Ruby Hall", "Sassoon Hospital"
+};
+
+bool visited[5] = {};
+int step = 1;
+
+void DFS(int v) {
+    visited[v] = true;
+    cout << step++ << ". " << landmark[v] << "\n";
+
+    for (int i = 0; i < 5; i++) {
+        if (adj[v][i] == 1 && !visited[i])
+            DFS(i);
+    }
+}
+
+int main() {
+    int s;
+
+    cout << "====================================\n";
+    cout << " COLLEGE LANDMARK GRAPH - DFS\n";
+    cout << "====================================\n";
+
+    cout << " Available Landmarks\n";
+    cout << "------------------------------------\n";
+
+    for (int i = 0; i < 5; i++)
+        cout << " " << i << ". " << landmark[i] << "\n";
+
+    cout << "------------------------------------\n";
+    cout << "Enter starting landmark (0-4): ";
+    cin >> s;
+
+    if (s < 0 || s > 4) {
+        cout << "\n[!] Invalid landmark number!\n";
+        return 0;
+    }
+
+    cout << "\n========== DFS TRAVERSAL ==========\n";
+    DFS(s);
+
+    cout << "====================================\n";
+    cout << "Traversal completed successfully!\n";
+
+    return 0;
+}
