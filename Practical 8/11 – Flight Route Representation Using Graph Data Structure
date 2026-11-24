@@ -1,0 +1,83 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// Block 1: Flight Edge Struct (Destination + Time & Fuel costs)
+struct Flight {
+    int city;
+    double time; // in hours
+    double fuel; // in liters (or kg)
+};
+
+int main() {
+    // Block 2: City Count & Graph Containers
+    int n, m;
+    cout << "====================================\n";
+    cout << "        FLIGHT ROUTE GRAPH\n";
+    cout << "====================================\n";
+
+    cout << "Enter number of cities/airports: ";
+    cin >> n;
+    if (n <= 0) {
+        cout << "Invalid number of cities!\n";
+        return 0;
+    }
+
+    vector<string> cities(n);
+    vector<vector<Flight>> graph(n);
+
+    // Block 3: Reading City / Airport Names
+    for (int i = 0; i < n; i++) {
+        cout << "Enter city/airport " << i << ": ";
+        getline(cin >> ws, cities[i]);
+    }
+
+    // Block 4: Reading & Validating Flight Routes
+    cout << "\nEnter number of flight routes: ";
+    cin >> m;
+    if (m < 0) {
+        cout << "Invalid number of routes!\n";
+        return 0;
+    }
+
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        double t, f;
+        cout << "Enter source index, destination index, time (hrs), and fuel: ";
+        cin >> u >> v >> t >> f;
+
+        if (u < 0 || u >= n || v < 0 || v >= n || t < 0 || f < 0) {
+            cout << "Invalid flight route! Please re-enter.\n";
+            i--;
+            continue;
+        }
+
+        // Directed edge: u -> v with weights time and fuel
+        graph[u].push_back({v, t, f});
+    }
+
+    // Block 5: Printing the Graph & Storage Justification
+    cout << "\n========== FLIGHT ROUTES ==========\n";
+    for (int i = 0; i < n; i++) {
+        cout << cities[i] << " -> ";
+        if (graph[i].empty()) {
+            cout << "No direct flights";
+        } else {
+            for (const auto& fl : graph[i]) {
+                cout << "[" << cities[fl.city]
+                     << " | Time: " << fl.time << " hrs"
+                     << ", Fuel: " << fl.fuel << "] ";
+            }
+        }
+        cout << "\n";
+    }
+
+    cout << "\nRepresentation: Weighted Directed Adjacency List\n";
+    cout << "Justification:\n";
+    cout << "1. Flight networks are sparse, so Adjacency List uses O(V + E) space\n";
+    cout << "   instead of wasting O(V^2) space like an Adjacency Matrix.\n";
+    cout << "2. Iterating over outgoing flights from a city only visits actual routes.\n";
+
+    return 0;
+}
