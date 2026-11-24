@@ -1,0 +1,211 @@
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+struct Node {
+    string key, meaning;
+    Node *left, *right;
+
+    Node(string k, string m) {
+        key = k;
+        meaning = m;
+        left = right = nullptr;
+    }
+};
+
+// Insert a new keyword
+Node* insert(Node* r, string k, string m) {
+    if (!r) return new Node(k, m);
+
+    if (k < r->key)
+        r->left = insert(r->left, k, m);
+    else if (k > r->key)
+        r->right = insert(r->right, k, m);
+    else
+        cout << "\nKeyword already exists.\n";
+
+    return r;
+}
+
+// Search for a keyword
+Node* search(Node* r, string k) {
+    if (!r || r->key == k)
+        return r;
+
+    return k < r->key
+        ? search(r->left, k)
+        : search(r->right, k);
+}
+
+// Find minimum node
+Node* minNode(Node* r) {
+    while (r && r->left)
+        r = r->left;
+
+    return r;
+}
+
+// Delete a keyword
+Node* deleteKey(Node* r, string k) {
+    if (!r) return nullptr;
+
+    if (k < r->key)
+        r->left = deleteKey(r->left, k);
+    else if (k > r->key)
+        r->right = deleteKey(r->right, k);
+    else {
+        if (!r->left || !r->right) {
+            Node* t = r->left ? r->left : r->right;
+            delete r;
+            return t;
+        }
+
+        Node* t = minNode(r->right);
+        r->key = t->key;
+        r->meaning = t->meaning;
+        r->right = deleteKey(r->right, t->key);
+    }
+
+    return r;
+}
+
+// Display in ascending or descending order
+void display(Node* r, bool asc) {
+    if (!r) return;
+
+    display(asc ? r->left : r->right, asc);
+
+    cout << " " << r->key << " : "
+         << r->meaning << '\n';
+
+    display(asc ? r->right : r->left, asc);
+}
+
+// Calculate BST height
+int height(Node* r) {
+    if (!r) return 0;
+
+    return 1 + max(height(r->left),
+                   height(r->right));
+}
+
+int main() {
+    Node* root = nullptr;
+    int ch;
+    string k, m;
+
+    do {
+        cout << "\n========================================\n";
+        cout << "       DICTIONARY USING BST\n";
+        cout << "========================================\n";
+        cout << " 1. Add Keyword\n";
+        cout << " 2. Delete Keyword\n";
+        cout << " 3. Update Meaning\n";
+        cout << " 4. Display Ascending Order\n";
+        cout << " 5. Display Descending Order\n";
+        cout << " 6. Find Maximum Comparisons\n";
+        cout << " 7. Search Keyword\n";
+        cout << " 8. Exit\n";
+        cout << "----------------------------------------\n";
+        cout << " Enter your choice: ";
+        cin >> ch;
+
+        switch (ch) {
+            case 1: {
+                cout << "\n[ADD KEYWORD]\n";
+                cout << "Enter keyword: ";
+                cin >> k;
+
+                if (search(root, k)) {
+                    cout << "Keyword already exists.\n";
+                    break;
+                }
+
+                cout << "Enter meaning: ";
+                cin >> ws;
+                getline(cin, m);
+
+                root = insert(root, k, m);
+                cout << "Keyword added successfully.\n";
+                break;
+            }
+
+            case 2:
+                cout << "\n[DELETE KEYWORD]\n";
+                cout << "Enter keyword: ";
+                cin >> k;
+
+                if (!search(root, k))
+                    cout << "Keyword not found.\n";
+                else {
+                    root = deleteKey(root, k);
+                    cout << "Keyword deleted successfully.\n";
+                }
+                break;
+
+            case 3: {
+                cout << "\n[UPDATE MEANING]\n";
+                cout << "Enter keyword: ";
+                cin >> k;
+
+                Node* t = search(root, k);
+
+                if (!t)
+                    cout << "Keyword not found.\n";
+                else {
+                    cout << "Enter new meaning: ";
+                    cin >> ws;
+                    getline(cin, t->meaning);
+                    cout << "Meaning updated successfully.\n";
+                }
+                break;
+            }
+
+            case 4:
+            case 5:
+                cout << (ch == 4
+                    ? "\n[ASCENDING ORDER]\n"
+                    : "\n[DESCENDING ORDER]\n");
+
+                cout << "----------------------------------------\n";
+
+                if (!root)
+                    cout << "Dictionary is empty.\n";
+                else
+                    display(root, ch == 4);
+                break;
+
+            case 6:
+                cout << "\n[HEIGHT OF BST]\n";
+                cout << "Maximum comparisons: "
+                     << height(root) << '\n';
+                break;
+
+            case 7: {
+                cout << "\n[SEARCH KEYWORD]\n";
+                cout << "Enter keyword: ";
+                cin >> k;
+
+                Node* t = search(root, k);
+
+                if (!t)
+                    cout << "Keyword not found.\n";
+                else
+                    cout << "Meaning: " << t->meaning << '\n';
+                break;
+            }
+
+            case 8:
+                cout << "\nDictionary closed successfully.\n";
+                break;
+
+            default:
+                cout << "\nInvalid choice! Please select 1-8.\n";
+        }
+
+    } while (ch != 8);
+
+    return 0;
+}
